@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator - PowerGym Gym</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <div class="logo" onclick="window.location.href='index.html'">💪 PowerGym</div>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="plans.html" class="nav-link">Plans</a>
+      <a href="trainers.html" class="nav-link">Trainers</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="login.html" class="nav-link login-btn" id="authLink">Login</a>
+      <a href="#" class="nav-link logout-btn" id="logoutBtn" style="display:none;">Logout</a>
+    </nav>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <h2>BMI Calculator</h2>
+    <p style="text-align: center; color: #aaa; font-size: 18px; margin-bottom: 50px;">
+      Calculate your Body Mass Index and get personalized fitness recommendations
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+      <!-- Calculator Form -->
+      <div class="login-container" style="margin: 0; padding: 30px;">
+        <h3 style="color: #ff8c00; margin-bottom: 20px;">Calculate BMI</h3>
+        <form onsubmit="handleBMICalculation(event)">
+          <div class="form-group">
+            <label>Height (cm)</label>
+            <input type="number" id="bmiHeight" required placeholder="Enter your height in cm" step="0.1">
+          </div>
+          <div class="form-group">
+            <label>Weight (kg)</label>
+            <input type="number" id="bmiWeight" required placeholder="Enter your weight in kg" step="0.1">
+          </div>
+          <button type="submit" class="cta-btn" style="width: 100%; margin-top: 20px;">Calculate BMI</button>
+        </form>
+      </div>
+
+      <!-- Results -->
+      <div id="bmiResults" style="display: none;">
+        <div style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); padding: 40px; border-radius: 15px; border: 2px solid rgba(255, 140, 0, 0.2);">
+          <h3 style="color: #ff8c00; margin-bottom: 20px;">Your Results</h3>
+          <div style="background: rgba(255, 140, 0, 0.1); padding: 30px; border-radius: 10px; text-align: center;">
+            <p style="color: #aaa; font-size: 14px; margin-bottom: 10px;">Your BMI:</p>
+            <h1 id="bmiValue" style="color: #ff8c00; margin: 10px 0; font-size: 48px;">--</h1>
+            <p id="bmiCategory" style="font-size: 18px; margin-top: 20px; font-weight: bold;">--</p>
+          </div>
+          <div id="recommendation" style="margin-top: 30px; padding: 20px; background: rgba(255, 140, 0, 0.05); border-left: 4px solid #ff8c00; border-radius: 5px;">
+            <!-- Recommendation will be shown here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Section (shown initially) -->
+      <div id="bmiInfo">
+        <div style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); padding: 30px; border-radius: 15px; margin-bottom: 20px; border: 2px solid rgba(255, 140, 0, 0.2);">
+          <h3 style="color: #ff8c00; margin-bottom: 15px;">What is BMI?</h3>
+          <p style="color: #ccc; line-height: 1.8;">
+            Body Mass Index (BMI) is a measure of body fat based on height and weight. It's calculated as: weight (kg) / (height (m))²
+          </p>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); padding: 30px; border-radius: 15px; border: 2px solid rgba(255, 140, 0, 0.2);">
+          <h3 style="color: #ff8c00; margin-bottom: 20px;">BMI Categories</h3>
+          <div style="margin-bottom: 15px;">
+            <p style="color: #ff8c00; font-weight: bold;">Underweight: < 18.5</p>
+            <p style="color: #aaa; font-size: 14px;">Focus on building muscle and healthy weight gain</p>
+          </div>
+          <div style="margin-bottom: 15px;">
+            <p style="color: #4CAF50; font-weight: bold;">Normal: 18.5 - 24.9</p>
+            <p style="color: #aaa; font-size: 14px;">Maintain your healthy lifestyle and fitness routine</p>
+          </div>
+          <div style="margin-bottom: 15px;">
+            <p style="color: #FFC107; font-weight: bold;">Overweight: 25 - 29.9</p>
+            <p style="color: #aaa; font-size: 14px;">Start with cardio and strength training programs</p>
+          </div>
+          <div>
+            <p style="color: #f44336; font-weight: bold;">Obese: ≥ 30</p>
+            <p style="color: #aaa; font-size: 14px;">Consult with our trainers for personalized guidance</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Info -->
+    <div style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); padding: 40px; border-radius: 15px; margin-top: 60px; border-left: 4px solid #ff8c00;">
+      <h3 style="color: #ff8c00; margin-bottom: 25px;">💡 Recommendations Based on BMI</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+        <div style="background: rgba(255, 140, 0, 0.1); padding: 20px; border-radius: 10px;">
+          <h4 style="color: #ff8c00;">For Underweight</h4>
+          <ul style="color: #aaa; font-size: 14px; list-style: none; padding-left: 0;">
+            <li>✓ High-protein diet</li>
+            <li>✓ Resistance training</li>
+            <li>✓ Strength building program</li>
+            <li>✓ Calorie surplus meals</li>
+          </ul>
+        </div>
+        <div style="background: rgba(76, 175, 80, 0.1); padding: 20px; border-radius: 10px;">
+          <h4 style="color: #4CAF50;">For Normal Weight</h4>
+          <ul style="color: #aaa; font-size: 14px; list-style: none; padding-left: 0;">
+            <li>✓ Maintain regular exercise</li>
+            <li>✓ Balanced diet</li>
+            <li>✓ Weekly fitness routine</li>
+            <li>✓ Health check-ups</li>
+          </ul>
+        </div>
+        <div style="background: rgba(255, 193, 7, 0.1); padding: 20px; border-radius: 10px;">
+          <h4 style="color: #FFC107;">For Overweight</h4>
+          <ul style="color: #aaa; font-size: 14px; list-style: none; padding-left: 0;">
+            <li>✓ Cardio exercises</li>
+            <li>✓ Portion control</li>
+            <li>✓ 30 mins daily activity</li>
+            <li>✓ Trainer's guidance</li>
+          </ul>
+        </div>
+        <div style="background: rgba(244, 67, 54, 0.1); padding: 20px; border-radius: 10px;">
+          <h4 style="color: #f44336;">For Obese</h4>
+          <ul style="color: #aaa; font-size: 14px; list-style: none; padding-left: 0;">
+            <li>✓ Intensive training</li>
+            <li>✓ Strict diet plan</li>
+            <li>✓ Medical consultation</li>
+            <li>✓ Personal trainer</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>PowerGym Gym</h4>
+        <p>Your fitness journey starts here</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="plans.html">Plans</a>
+        <a href="trainers.html">Trainers</a>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>📞 +91-XXXXX-XXXXX</p>
+        <p>✉️ info@PowerGym.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 PowerGym Gym. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script>
+  async function handleBMICalculation(e) {
+    e.preventDefault();
+    const height = parseFloat(document.getElementById('bmiHeight').value);
+    const weight = parseFloat(document.getElementById('bmiWeight').value);
+
+    try {
+      const result = await calculateBMI(height, weight);
+      
+      // Show results
+      document.getElementById('bmiInfo').style.display = 'none';
+      document.getElementById('bmiResults').style.display = 'block';
+      
+      document.getElementById('bmiValue').innerText = result.bmi;
+      document.getElementById('bmiCategory').innerText = result.category;
+
+      let recommendation = '';
+      switch(result.category) {
+        case 'Underweight':
+          recommendation = `<strong>Underweight:</strong> You should focus on gaining weight through proper nutrition and strength training. We recommend our Pro plan with personal trainer guidance.`;
+          break;
+        case 'Normal weight':
+          recommendation = `<strong>Great Job!</strong> You are at a healthy weight. Maintain your fitness with our Basic or Pro membership.`;
+          break;
+        case 'Overweight':
+          recommendation = `<strong>Overweight:</strong> Start a fitness journey with cardio and strength training. Our Pro plan is perfect for you.`;
+          break;
+        case 'Obese':
+          recommendation = `<strong>Action Needed:</strong> We strongly recommend the Elite plan with personal trainers and nutrition guidance.`;
+          break;
+      }
+      
+      document.getElementById('recommendation').innerHTML = recommendation;
+    } catch (error) {
+      alert('Calculation error: ' + error.message);
+    }
+  }
+</script>
+
+</body>
+</html>

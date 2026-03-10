@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - PowerGym Gym</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <div class="logo" onclick="window.location.href='index.html'">💪 PowerGym</div>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="plans.html" class="nav-link">Plans</a>
+      <a href="trainers.html" class="nav-link">Trainers</a>
+      <a href="classes.html" class="nav-link">Classes</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="#" class="nav-link logout-btn" id="logoutBtn" onclick="handleLogout()">Logout</a>
+    </nav>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <h3>Dashboard</h3>
+        <a href="#profile" class="sidebar-link active" onclick="switchTab('profile')">My Profile</a>
+        <a href="#membership" class="sidebar-link" onclick="switchTab('membership')">Membership</a>
+        <a href="#bookings" class="sidebar-link" onclick="switchTab('bookings')">My Bookings</a>
+        <a href="#settings" class="sidebar-link" onclick="switchTab('settings')">Settings</a>
+      </div>
+
+      <!-- Main Content -->
+      <div class="content">
+        
+        <!-- Profile Tab -->
+        <div id="profileTab" class="tab-content" style="display: block;">
+          <h2 style="color: #ff8c00; margin-bottom: 30px;">My Profile</h2>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+            <div style="background: rgba(255, 140, 0, 0.1); padding: 25px; border-radius: 10px;">
+              <h4 style="color: #ff8c00;">User Information</h4>
+              <div style="margin-top: 15px;">
+                <p style="color: #aaa; margin: 10px 0;"><strong>Name:</strong> <span id="profileName">Loading...</span></p>
+                <p style="color: #aaa; margin: 10px 0;"><strong>Email:</strong> <span id="profileEmail">Loading...</span></p>
+                <p style="color: #aaa; margin: 10px 0;"><strong>Phone:</strong> <span id="profilePhone">Not set</span></p>
+                <p style="color: #aaa; margin: 10px 0;"><strong>Age:</strong> <span id="profileAge">Not set</span></p>
+              </div>
+            </div>
+
+            <div style="background: rgba(255, 140, 0, 0.1); padding: 25px; border-radius: 10px;">
+              <h4 style="color: #ff8c00;">Membership Status</h4>
+              <div style="margin-top: 15px;">
+                <p style="color: #aaa; margin: 10px 0;"><strong>Plan:</strong> <span id="profilePlan" style="color: #ff8c00; font-weight: bold;">No Active Plan</span></p>
+                <div id="membershipDates" style="display: none;">
+                  <p style="color: #aaa; margin: 10px 0;"><strong>Start Date:</strong> <span id="startDate">--</span></p>
+                  <p style="color: #aaa; margin: 10px 0;"><strong>End Date:</strong> <span id="endDate" style="color: #ff8c00;">--</span></p>
+                </div>
+                <button onclick="window.location.href='plans.html'" class="cta-btn" style="margin-top: 15px; width: 100%;">Upgrade Plan</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: rgba(255, 140, 0, 0.05); padding: 25px; border-radius: 10px; border-left: 4px solid #ff8c00;">
+            <h4 style="color: #ff8c00;">Edit Profile</h4>
+            <form onsubmit="handleProfileUpdate(event)" style="margin-top: 20px;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="form-group">
+                  <label>Phone Number</label>
+                  <input type="tel" id="editPhone" placeholder="Your phone">
+                </div>
+                <div class="form-group">
+                  <label>Age</label>
+                  <input type="number" id="editAge" placeholder="Your age">
+                </div>
+              </div>
+              <button type="submit" class="cta-btn" style="margin-top: 20px;">Update Profile</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Membership Tab -->
+        <div id="membershipTab" class="tab-content" style="display: none;">
+          <h2 style="color: #ff8c00; margin-bottom: 30px;">Membership Plans</h2>
+          <p style="color: #aaa; margin-bottom: 20px;">Choose a plan that fits your fitness goals:</p>
+          <div class="plans-grid" id="dashboardPlans">
+            <!-- Plans will load here -->
+          </div>
+        </div>
+
+        <!-- Bookings Tab -->
+        <div id="bookingsTab" class="tab-content" style="display: none;">
+          <h2 style="color: #ff8c00; margin-bottom: 30px;">My Class Bookings</h2>
+          <div id="bookingsContainer" style="margin-top: 20px;">
+            <!-- Bookings will load here -->
+          </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div id="settingsTab" class="tab-content" style="display: none;">
+          <h2 style="color: #ff8c00; margin-bottom: 30px;">Settings</h2>
+          
+          <div style="background: rgba(255, 140, 0, 0.05); padding: 25px; border-radius: 10px; margin-bottom: 20px;">
+            <h4 style="color: #ff8c00;">Change Password</h4>
+            <p style="color: #aaa; margin: 15px 0;">Currently, to change your password, please contact our support team.</p>
+            <a href="contact.html" class="cta-btn">Contact Support</a>
+          </div>
+
+          <div style="background: rgba(244, 67, 54, 0.1); padding: 25px; border-radius: 10px; border-left: 4px solid #f44336;">
+            <h4 style="color: #f44336;">Danger Zone</h4>
+            <p style="color: #aaa; margin: 15px 0;">Once you delete your account, there is no going back. Please be certain.</p>
+            <button onclick="deleteAccount()" style="background: #f44336; padding: 10px 20px; border: none; color: white; border-radius: 5px; cursor: pointer; font-weight: bold;">Delete Account</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>PowerGym Gym</h4>
+        <p>Your fitness journey starts here</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="plans.html">Plans</a>
+        <a href="trainers.html">Trainers</a>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>📞 +91-XXXXX-XXXXX</p>
+        <p>✉️ info@PowerGym.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 PowerGym Gym. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script>
+  // Check if user is logged in
+  document.addEventListener('DOMContentLoaded', () => {
+    if (!isLoggedIn()) {
+      window.location.href = 'login.html';
+    } else {
+      loadProfileData();
+      loadMembershipPlans();
+      loadBookings();
+    }
+  });
+
+  function switchTab(tab) {
+    // Hide all tabs
+    document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
+    
+    // Show selected tab
+    document.getElementById(tab + 'Tab').style.display = 'block';
+    event.target.classList.add('active');
+  }
+
+  async function loadProfileData() {
+    try {
+      const profile = await getUserProfile();
+      document.getElementById('profileName').innerText = profile.name;
+      document.getElementById('profileEmail').innerText = profile.email;
+      document.getElementById('profilePhone').innerText = profile.phone || 'Not set';
+      document.getElementById('profileAge').innerText = profile.age || 'Not set';
+      
+      document.getElementById('editPhone').value = profile.phone || '';
+      document.getElementById('editAge').value = profile.age || '';
+      
+      if (profile.membership_plan && profile.membership_plan !== 'none') {
+        document.getElementById('profilePlan').innerText = profile.membership_plan;
+        document.getElementById('membershipDates').style.display = 'block';
+        document.getElementById('startDate').innerText = new Date(profile.membership_start_date).toLocaleDateString();
+        document.getElementById('endDate').innerText = new Date(profile.membership_end_date).toLocaleDateString();
+      }
+    } catch (error) {
+      console.error('Error loading profile:', error);
+    }
+  }
+
+  async function loadMembershipPlans() {
+    try {
+      const plans = await getMembershipPlans();
+      const container = document.getElementById('dashboardPlans');
+      container.innerHTML = '';
+      
+      plans.forEach(plan => {
+        const planHTML = `
+          <div class="plan">
+            <h3>${plan.name}</h3>
+            <p style="font-size: 32px; color: #ff8c00; margin: 15px 0; font-weight: bold;">₹${plan.price}</p>
+            <p style="color: #aaa;">Per Month</p>
+            <p style="font-size: 14px; color: #bbb; margin: 15px 0; border-top: 1px solid rgba(255, 140, 0, 0.2); border-bottom: 1px solid rgba(255, 140, 0, 0.2); padding: 15px 0;">
+              ${plan.features}
+            </p>
+            <button onclick="upgradePlan('${plan.name}')" class="cta-btn" style="width: 100%; margin-top: 15px;">Select</button>
+          </div>
+        `;
+        container.innerHTML += planHTML;
+      });
+    } catch (error) {
+      console.error('Error loading plans:', error);
+    }
+  }
+
+  async function loadBookings() {
+    try {
+      const bookings = await getUserBookings();
+      const container = document.getElementById('bookingsContainer');
+      
+      if (bookings.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: #aaa;">No bookings yet. <a href="classes.html" style="color: #ff8c00;">Book a class now!</a></p>';
+        return;
+      }
+      
+      container.innerHTML = '';
+      bookings.forEach(booking => {
+        const bookingHTML = `
+          <div style="background: rgba(255, 140, 0, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h4 style="color: #ff8c00; margin-bottom: 8px;">${booking.class_name}</h4>
+              <p style="color: #aaa; font-size: 14px; margin: 5px 0;">Trainer: ${booking.trainer_name || 'Not assigned'}</p>
+              <p style="color: #aaa; font-size: 14px; margin: 5px 0;">Date: ${new Date(booking.booking_date).toLocaleDateString()}</p>
+              <p style="color: #aaa; font-size: 13px; margin: 5px 0;">Status: <span style="color: ${booking.status === 'confirmed' ? '#4CAF50' : '#f44336'}; font-weight: bold;">${booking.status}</span></p>
+            </div>
+            <button onclick="cancelBookingAction(${booking.id})" style="background: #f44336; color: white; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Cancel</button>
+          </div>
+        `;
+        container.innerHTML += bookingHTML;
+      });
+    } catch (error) {
+      console.error('Error loading bookings:', error);
+    }
+  }
+
+  async function handleProfileUpdate(e) {
+    e.preventDefault();
+    const phone = document.getElementById('editPhone').value;
+    const age = document.getElementById('editAge').value;
+    const name = document.getElementById('profileName').innerText;
+
+    try {
+      const result = await updateUserProfile(name, phone, age);
+      alert('Profile updated successfully!');
+      loadProfileData();
+    } catch (error) {
+      alert('Update failed: ' + error.message);
+    }
+  }
+
+  function upgradePlan(planName) {
+    if (confirm(`Upgrade to ${planName} plan?`)) {
+      purchaseMembership(planName).then(result => {
+        alert('Membership upgraded successfully!');
+        loadProfileData();
+        switchTab('profile');
+      }).catch(err => {
+        alert('Error: ' + err.message);
+      });
+    }
+  }
+
+  async function cancelBookingAction(bookingId) {
+    if (confirm('Cancel this booking?')) {
+      try {
+        await cancelBooking(bookingId);
+        alert('Booking cancelled');
+        loadBookings();
+      } catch (error) {
+        alert('Error: ' + error.message);
+      }
+    }
+  }
+
+  function handleLogout() {
+    if (confirm('Are you sure you want to logout?')) {
+      logoutUser();
+    }
+  }
+
+  function deleteAccount() {
+    if (confirm('Are you sure? This cannot be undone!')) {
+      alert('Account deletion feature coming soon. Please contact support.');
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership Plans - PowerGym Gym</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <div class="logo" onclick="window.location.href='index.html'">💪 PowerGym</div>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="plans.html" class="nav-link active">Plans</a>
+      <a href="trainers.html" class="nav-link">Trainers</a>
+      <a href="classes.html" class="nav-link">Classes</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="login.html" class="nav-link login-btn" id="authLink">Login</a>
+      <a href="#" class="nav-link logout-btn" id="logoutBtn" style="display:none;">Logout</a>
+    </nav>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <h2>Choose Your Membership Plan</h2>
+    
+    <div class="plans-grid" id="plansContainer">
+      <!-- Plans will load here -->
+    </div>
+
+    <div style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); padding: 50px; border-radius: 15px; margin-top: 60px; border: 2px solid rgba(255, 140, 0, 0.2);">
+      <h3 style="color: #ff8c00; margin-bottom: 30px;">Plan Features Comparison</h3>
+      <table style="width: 100%; border-collapse: collapse;">
+        <tr style="border-bottom: 2px solid rgba(255, 140, 0, 0.2);">
+          <th style="text-align: left; padding: 15px; color: #ff8c00;">Feature</th>
+          <th style="text-align: center; padding: 15px;">Basic</th>
+          <th style="text-align: center; padding: 15px;">Pro</th>
+          <th style="text-align: center; padding: 15px;">Elite</th>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(255, 140, 0, 0.1);">
+          <td style="padding: 15px;">Gym Access</td>
+          <td style="text-align: center; padding: 15px;">✅</td>
+          <td style="text-align: center; padding: 15px;">✅</td>
+          <td style="text-align: center; padding: 15px;">✅</td>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(255, 140, 0, 0.1);">
+          <td style="padding: 15px;">Group Classes</td>
+          <td style="text-align: center; padding: 15px;">❌</td>
+          <td style="text-align: center; padding: 15px;">✅</td>
+          <td style="text-align: center; padding: 15px;">✅</td>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(255, 140, 0, 0.1);">
+          <td style="padding: 15px;">Personal Trainer</td>
+          <td style="text-align: center; padding: 15px;">❌</td>
+          <td style="text-align: center; padding: 15px;">✅</td>
+          <td style="text-align: center; padding: 15px;">✅</td>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(255, 140, 0, 0.1);">
+          <td style="padding: 15px;">Nutrition Plan</td>
+          <td style="text-align: center; padding: 15px;">❌</td>
+          <td style="text-align: center; padding: 15px;">❌</td>
+          <td style="text-align: center; padding: 15px;">✅</td>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(255, 140, 0, 0.1);">
+          <td style="padding: 15px;">Video Library</td>
+          <td style="text-align: center; padding: 15px;">✅</td>
+          <td style="text-align: center; padding: 15px;">✅</td>
+          <td style="text-align: center; padding: 15px;">✅</td>
+        </tr>
+        <tr>
+          <td style="padding: 15px;">24/7 Support</td>
+          <td style="text-align: center; padding: 15px;">❌</td>
+          <td style="text-align: center; padding: 15px;">❌</td>
+          <td style="text-align: center; padding: 15px;">✅</td>
+        </tr>
+      </table>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); padding: 40px; border-radius: 15px; margin-top: 60px; border-left: 4px solid #ff8c00;">
+      <h3 style="color: #ff8c00;">❓ Frequently Asked Questions</h3>
+      <div style="margin-top: 20px;">
+        <div style="margin-bottom: 20px;">
+          <h4 style="color: #fff;">Can I upgrade my membership?</h4>
+          <p style="color: #aaa;">Yes! You can upgrade anytime from your dashboard. The difference will be calculated prorated.</p>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <h4 style="color: #fff;">Is there a cancellation fee?</h4>
+          <p style="color: #aaa;">No cancellation fees. You can cancel anytime from the end of your billing cycle.</p>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <h4 style="color: #fff;">Do you offer trial memberships?</h4>
+          <p style="color: #aaa;">Yes! Get a 3-day free trial. No credit card required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>PowerGym Gym</h4>
+        <p>Your fitness journey starts here</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="trainers.html">Trainers</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>📞 +91-XXXXX-XXXXX</p>
+        <p>✉️ info@PowerGym.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 PowerGym Gym. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const plans = await getMembershipPlans();
+      displayPlans(plans);
+    } catch (error) {
+      alert('Error loading plans: ' + error.message);
+    }
+  });
+
+  function displayPlans(plans) {
+    const container = document.getElementById('plansContainer');
+    container.innerHTML = '';
+    
+    plans.forEach(plan => {
+      const planHTML = `
+        <div class="plan">
+          <h3>${plan.name}</h3>
+          <p style="font-size: 36px; color: #ff8c00; margin: 15px 0; font-weight: bold;">₹${plan.price}</p>
+          <p style="color: #aaa;">Per Month</p>
+          <p style="font-size: 14px; color: #bbb; margin: 20px 0; border-top: 1px solid rgba(255, 140, 0, 0.2); border-bottom: 1px solid rgba(255, 140, 0, 0.2); padding: 15px 0;">
+            ${plan.features}
+          </p>
+          <p style="color: #999; font-size: 13px; margin: 15px 0;">${plan.description}</p>
+          <button onclick="handlePlanClick('${plan.name}')" class="cta-btn" style="width: 100%; margin-top: 20px;">Select Plan</button>
+        </div>
+      `;
+      container.innerHTML += planHTML;
+    });
+  }
+
+  function handlePlanClick(planName) {
+    if (isLoggedIn()) {
+      if (confirm(`Purchase ${planName} plan for 1 month?`)) {
+        purchaseMembership(planName).then(result => {
+          alert(result.message);
+          window.location.href = 'dashboard.html';
+        }).catch(err => {
+          alert('Error: ' + err.message);
+        });
+      }
+    } else {
+      alert('Please login first!');
+      window.location.href = 'login.html';
+    }
+  }
+</script>
+
+</body>
+</html>

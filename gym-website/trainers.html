@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Trainers - EliteFit Gym</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <div class="logo" onclick="window.location.href='index.html'">💪 EliteFit</div>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="plans.html" class="nav-link">Plans</a>
+      <a href="trainers.html" class="nav-link active">Trainers</a>
+      <a href="classes.html" class="nav-link">Classes</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="login.html" class="nav-link login-btn" id="authLink">Login</a>
+      <a href="#" class="nav-link logout-btn" id="logoutBtn" style="display:none;">Logout</a>
+    </nav>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <h2>Meet Our Expert Trainers</h2>
+    <p style="text-align: center; color: #aaa; font-size: 18px; margin-bottom: 50px;">
+      Our certified trainers are dedicated to helping you achieve your fitness goals with personalized guidance.
+    </p>
+
+    <div class="trainers-grid" id="trainersContainer">
+      <!-- Trainers will load here -->
+    </div>
+
+    <div style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); padding: 40px; border-radius: 15px; margin-top: 80px; border-left: 4px solid #ff8c00;">
+      <h3 style="color: #ff8c00; margin-bottom: 25px;">Why Choose Our Trainers?</h3>
+      <ul style="list-style: none;">
+        <li style="margin-bottom: 15px; padding-left: 30px; position: relative;">
+          <span style="position: absolute; left: 0; color: #ff8c00;">✓</span>
+          <strong>Certified Professionals</strong> - All trainers have recognized certifications
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 30px; position: relative;">
+          <span style="position: absolute; left: 0; color: #ff8c00;">✓</span>
+          <strong>Years of Experience</strong> - Average 5+ years in fitness industry
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 30px; position: relative;">
+          <span style="position: absolute; left: 0; color: #ff8c00;">✓</span>
+          <strong>Personalized Plans</strong> - Customized workout routines for your goals
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 30px; position: relative;">
+          <span style="position: absolute; left: 0; color: #ff8c00;">✓</span>
+          <strong>Nutritional Guidance</strong> - Complete diet and supplement advice
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 30px; position: relative;">
+          <span style="position: absolute; left: 0; color: #ff8c00;">✓</span>
+          <strong>Progress Tracking</strong> - Regular monitoring and adjustments
+        </li>
+        <li style="margin-bottom: 15px; padding-left: 30px; position: relative;">
+          <span style="position: absolute; left: 0; color: #ff8c00;">✓</span>
+          <strong>Motivational Support</strong> - Keep you motivated throughout your journey
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>EliteFit Gym</h4>
+        <p>Your fitness journey starts here</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="plans.html">Plans</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>📞 +91-XXXXX-XXXXX</p>
+        <p>✉️ info@elitefit.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 EliteFit Gym. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const trainers = await getTrainers();
+      displayTrainers(trainers);
+    } catch (error) {
+      alert('Error loading trainers: ' + error.message);
+    }
+  });
+
+  function displayTrainers(trainers) {
+    const container = document.getElementById('trainersContainer');
+    container.innerHTML = '';
+    
+    trainers.forEach(trainer => {
+      const trainerHTML = `
+        <div class="trainer-card">
+          <img src="${trainer.image_url || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d'}" alt="${trainer.name}" style="width: 100%; height: 300px; object-fit: cover;">
+          <div class="trainer-info">
+            <h3>${trainer.name}</h3>
+            <p style="color: #ff8c00; font-weight: bold; margin-bottom: 10px;">${trainer.specialization}</p>
+            <p>${trainer.bio || 'Expert fitness trainer'}</p>
+            <p style="margin: 10px 0; color: #999; font-size: 13px;">
+              📞 ${trainer.phone}<br>
+              ✉️ ${trainer.email}
+            </p>
+            <p style="margin-top: 10px; font-size: 14px; color: #aaa;">⭐ ${trainer.experience || 5}+ Years Experience</p>
+            <button onclick="bookTrainer('${trainer.name}', '${trainer.id}')" class="cta-btn" style="width: 100%; margin-top: 15px;">Book Session</button>
+          </div>
+        </div>
+      `;
+      container.innerHTML += trainerHTML;
+    });
+  }
+
+  function bookTrainer(name, id) {
+    if (isLoggedIn()) {
+      alert(`Great! You've selected trainer ${name}. Please contact us to book a session.`);
+    } else {
+      alert('Please login first!');
+      window.location.href = 'login.html';
+    }
+  }
+</script>
+
+</body>
+</html>

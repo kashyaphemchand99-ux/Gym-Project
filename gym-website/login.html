@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - PowerGym Gym</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <div class="logo" onclick="window.location.href='index.html'">💪 PowerGym</div>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="plans.html" class="nav-link">Plans</a>
+      <a href="trainers.html" class="nav-link">Trainers</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="section" style="min-height: 100vh; display: flex; align-items: center;">
+  <div style="width: 100%; max-width: 900px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+      
+      <!-- Login Form -->
+      <div class="login-container">
+        <h2>Login</h2>
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="loginEmail" required placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="loginPassword" required placeholder="Enter password">
+          </div>
+          <button type="submit" class="cta-btn" style="width: 100%; margin-top: 20px;">Login</button>
+        </form>
+        <p style="text-align: center; margin-top: 20px; color: #aaa;">
+          Don't have an account? <a href="#register" style="color: #ff8c00; cursor: pointer;" onclick="switchTab('register')">Register here</a>
+        </p>
+      </div>
+
+      <!-- Registration Form -->
+      <div class="login-container" id="registerForm" style="display: none;">
+        <h2>Register</h2>
+        <form onsubmit="handleRegister(event)">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="regName" required placeholder="John Doe">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="regEmail" required placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" id="regPhone" placeholder="Your phone number">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Age</label>
+              <input type="number" id="regAge" placeholder="25">
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="regPassword" required placeholder="Create password">
+            </div>
+          </div>
+          <button type="submit" class="cta-btn" style="width: 100%; margin-top: 20px;">Register</button>
+        </form>
+        <p style="text-align: center; margin-top: 20px; color: #aaa;">
+          Already have an account? <a href="#login" style="color: #ff8c00; cursor: pointer;" onclick="switchTab('login')">Login here</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Info Section -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 80px;">
+      <div style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); padding: 30px; border-radius: 15px; text-align: center; border: 2px solid rgba(255, 140, 0, 0.2);">
+        <div style="font-size: 40px; margin-bottom: 10px;">🔐</div>
+        <h3 style="color: #ff8c00;">Secure Account</h3>
+        <p style="color: #aaa; font-size: 14px;">Your data is protected with industry-standard encryption</p>
+      </div>
+      <div style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); padding: 30px; border-radius: 15px; text-align: center; border: 2px solid rgba(255, 140, 0, 0.2);">
+        <div style="font-size: 40px; margin-bottom: 10px;">⚡</div>
+        <h3 style="color: #ff8c00;">Quick Access</h3>
+        <p style="color: #aaa; font-size: 14px;">Book classes and track progress instantly</p>
+      </div>
+      <div style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); padding: 30px; border-radius: 15px; text-align: center; border: 2px solid rgba(255, 140, 0, 0.2);">
+        <div style="font-size: 40px; margin-bottom: 10px;">💪</div>
+        <h3 style="color: #ff8c00;">Real Results</h3>
+        <p style="color: #aaa; font-size: 14px;">Join thousands of members achieving their goals</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>PowerGym Gym</h4>
+        <p>Your fitness journey starts here</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="plans.html">Plans</a>
+        <a href="trainers.html">Trainers</a>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>📞 +91-XXXXX-XXXXX</p>
+        <p>✉️ info@PowerGym.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 PowerGym Gym. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script>
+  function switchTab(tab) {
+    const loginForm = document.querySelector('.login-container');
+    const registerForm = document.getElementById('registerForm');
+    
+    if (tab === 'register') {
+      loginForm.style.display = 'none';
+      registerForm.style.display = 'block';
+    } else {
+      loginForm.style.display = 'block';
+      registerForm.style.display = 'none';
+    }
+  }
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    
+    try {
+      const result = await loginUser(email, password);
+      alert('Login successful!');
+      window.location.href = 'dashboard.html';
+    } catch (error) {
+      alert('Login failed: ' + error.message);
+    }
+  }
+
+  async function handleRegister(e) {
+    e.preventDefault();
+    const name = document.getElementById('regName').value;
+    const email = document.getElementById('regEmail').value;
+    const password = document.getElementById('regPassword').value;
+    const phone = document.getElementById('regPhone').value;
+    const age = document.getElementById('regAge').value;
+
+    try {
+      const result = await registerUser(name, email, password, phone, age);
+      alert('Registration successful! Please login now.');
+      switchTab('login');
+    } catch (error) {
+      alert('Registration failed: ' + error.message);
+    }
+  }
+</script>
+
+</body>
+</html>
