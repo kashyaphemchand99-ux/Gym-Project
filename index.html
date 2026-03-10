@@ -1,1 +1,150 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elite Fitness Gym - Complete Solution</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navigation Header -->
+<header>
+  <div class="header-container">
+    <div class="logo">💪 PowerGym</div>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="classes.html" class="nav-link">Classes</a>
+      <a href="trainers.html" class="nav-link">Trainers</a>
+      <a href="plans.html" class="nav-link">Plans</a>
+      <a href="bmi-calculator.html" class="nav-link">BMI</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="login.html" class="nav-link login-btn" id="authLink">Login</a>
+      <a href="#" class="nav-link logout-btn" id="logoutBtn" style="display:none;">Logout</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Build Your Dream Body</h1>
+    <p>Join India's Most Advanced Fitness Gym with Expert Trainers</p>
+    <button class="cta-btn" onclick="handleJoinClick()">Start Your Journey</button>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section about-section">
+  <div class="container">
+    <h2>Why Choose PowerGym?</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🏋️</div>
+        <h3>Modern Equipment</h3>
+        <p>State-of-the-art fitness equipment and facilities</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👨‍🏫</div>
+        <h3>Expert Trainers</h3>
+        <p>Certified trainers with years of experience</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Personal Plans</h3>
+        <p>Customized fitness programs for your goals</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🥗</div>
+        <h3>Nutrition Guidance</h3>
+        <p>Complete diet and wellness recommendations</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Group Classes</h3>
+        <p>Variety of classes: Cardio, Strength, Yoga</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💯</div>
+        <h3>Results Guaranteed</h3>
+        <p>Transform your body in just 90 days</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stat">
+      <h3>5000+</h3>
+      <p>Members</p>
+    </div>
+    <div class="stat">
+      <h3>50+</h3>
+      <p>Trainers</p>
+    </div>
+    <div class="stat">
+      <h3>100+</h3>
+      <p>Classes/Week</p>
+    </div>
+    <div class="stat">
+      <h3>98%</h3>
+      <p>Satisfaction</p>
+    </div>
+  </div>
+</section>
+
+<!-- Membership Plans Preview -->
+<section class="section plans-preview">
+  <div class="container">
+    <h2>Choose Your Plan</h2>
+    <div class="plans-grid" id="plansContainer">
+      <!-- Plans will be loaded here by JS -->
+    </div>
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="plans.html" class="cta-btn">View All Plans</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>PowerGym Gym</h4>
+        <p>Your fitness journey starts here</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="plans.html">Plans</a>
+        <a href="trainers.html">Trainers</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p>📞 +91-XXXXX-XXXXX</p>
+        <p>✉️ info@PowerGym.com</p>
+        <p>📍 123 Fitness Street, City</p>
+      </div>
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 PowerGym Gym. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/home.js"></script>
+
+</body>
+</html>
